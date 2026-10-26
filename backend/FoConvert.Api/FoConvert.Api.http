@@ -1,0 +1,9 @@
+@FoConvertApi = http://127.0.0.1:5080
+
+### Is the API running?
+GET {{FoConvertApi}}/api/health
+Accept: application/json
+
+### Read the upload policy
+GET {{FoConvertApi}}/api/conversion-options
+Accept: application/json

@@ -1,0 +1,20 @@
+# .NET build outputs
+**/bin/
+**/obj/
+
+# Frontend dependencies and builds
+**/node_modules/
+**/dist/
+
+# Local runtime files and secrets
+work/
+*.log
+*.lic
+.env
+.env.*
+!.env.example
+
+# IDE-specific state
+.vs/
+*.user
+*.suo
