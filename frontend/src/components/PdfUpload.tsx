@@ -50,10 +50,10 @@ export default function PdfUpload({
       }}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
-      className={`rounded-xl border-2 border-dashed transition-colors focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-4 ${
+      className={`rounded-xl border-2 border-dashed transition-colors focus-within:ring-2 focus-within:ring-secondary focus-within:ring-offset-4 ${
         isDragging
-          ? 'border-blue-500 bg-blue-50'
-          : 'border-slate-300 bg-slate-50 hover:border-blue-400 hover:bg-blue-50/50'
+          ? 'border-secondary bg-secondary-soft'
+          : 'border-slate-300 bg-slate-50 hover:border-secondary hover:bg-secondary-soft/50'
       }`}
     >
       <input
@@ -70,7 +70,7 @@ export default function PdfUpload({
         htmlFor={inputId}
         className={`flex flex-col items-center px-4 py-8 text-center sm:px-6 ${disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
       >
-        <span className="mb-4 flex size-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
+        <span className="mb-4 flex size-12 items-center justify-center rounded-xl bg-secondary-soft text-secondary">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -91,7 +91,7 @@ export default function PdfUpload({
         <span className="mt-2 text-sm text-slate-500">
           hoặc chọn tài liệu từ máy tính của bạn
         </span>
-        <span className="mt-5 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white">
+        <span className="mt-5 rounded-lg bg-primary-hover px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary">
           Chọn file PDF
         </span>
         <span className="mt-4 text-xs text-slate-500">

@@ -1,0 +1,22 @@
+<svg width="520" height="120" viewBox="0 0 520 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>FoConvert</title>
+  <defs>
+    <linearGradient id="arrow" x1="18" y1="92" x2="102" y2="18" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5B2BA5"/>
+      <stop offset="1" stop-color="#1474C4"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(4 7)">
+    <rect x="8" y="31" width="58" height="70" rx="10" fill="#FFF" stroke="#A72727" stroke-width="7"/>
+    <path d="M50 31H58L66 39V51H50V31Z" fill="#D12B2B"/>
+    <text x="15" y="76" fill="#A72727" font-family="Arial, sans-serif" font-size="17" font-weight="700">PDF</text>
+    <rect x="45" y="8" width="58" height="70" rx="10" fill="#FFF" stroke="#1474C4" stroke-width="7"/>
+    <path d="M87 8H95L103 16V28H87V8Z" fill="#1474C4"/>
+    <text x="50" y="52" fill="#1474C4" font-family="Arial, sans-serif" font-size="15" font-weight="700">DOCX</text>
+    <path d="M24 35C30 19 47 12 61 14" stroke="#1474C4" stroke-width="7" stroke-linecap="round"/>
+    <path d="M58 7L67 14L56 19" fill="#1474C4"/>
+    <path d="M92 70C84 88 67 99 49 97" stroke="url(#arrow)" stroke-width="7" stroke-linecap="round"/>
+    <path d="M51 106L41 97L54 91" fill="#5B2BA5"/>
+  </g>
+  <text x="125" y="79" fill="#0F3D66" font-family="Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-2">FoConvert</text>
+</svg>

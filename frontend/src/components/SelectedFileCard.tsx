@@ -10,8 +10,8 @@ export default function SelectedFileCard({
   onRemove,
 }: SelectedFileCardProps) {
   return (
-    <div className="mt-4 flex items-center gap-3 rounded-xl border border-blue-100 bg-blue-50 p-4">
-      <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-white text-xs font-bold text-red-600">
+    <div className="mt-4 flex items-center gap-3 rounded-xl border border-secondary-border bg-secondary-soft p-4">
+      <span className="flex size-11 shrink-0 items-center justify-center rounded-lg bg-white text-xs font-bold text-primary">
         PDF
       </span>
 
@@ -28,7 +28,7 @@ export default function SelectedFileCard({
         type="button"
         onClick={onRemove}
         aria-label="Bỏ file đã chọn"
-        className="flex size-10 shrink-0 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-blue-100 hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+        className="flex size-10 shrink-0 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-secondary-border hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
       >
         <svg
           viewBox="0 0 24 24"
