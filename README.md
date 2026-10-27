@@ -51,3 +51,4 @@ npm run build
 
 - `docs/02-file-upload.md`: component, props, state và đối tượng File.
 - `docs/03-backend-architecture.md`: cấu trúc backend, tham chiếu project, dependency injection, endpoint và Vite proxy.
+- docs/05-render-gdiplus-troubleshooting.md: lỗi GDI+ khi deploy converter lên Render và cách xử lý.
