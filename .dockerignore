@@ -1,0 +1,9 @@
+.git
+**/bin
+**/obj
+frontend/node_modules
+frontend/dist
+work
+*.lic
+.env
+.env.*
