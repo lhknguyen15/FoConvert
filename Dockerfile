@@ -28,6 +28,8 @@ RUN apt-get update \
 
 WORKDIR /app
 COPY --from=build /app/publish .
+RUN ln -sf /usr/lib/x86_64-linux-gnu/libgdiplus.so /app/gdiplus.dll \
+    && ln -sf /usr/lib/x86_64-linux-gnu/libgdiplus.so /app/libgdiplus.dll
 
 EXPOSE 10000
 
