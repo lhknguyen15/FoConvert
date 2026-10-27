@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="Aspose.PDF.Drawing" Version="26.9.0" />
     <ProjectReference Include="..\FoConvert.Application\FoConvert.Application.csproj" />
-    <PackageReference Include="Aspose.PDF" Version="26.10.0" />
     <PackageReference Include="System.Security.Cryptography.Pkcs" Version="9.0.21" />
   </ItemGroup>
 
