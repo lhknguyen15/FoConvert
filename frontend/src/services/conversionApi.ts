@@ -2,8 +2,14 @@ import type { ConversionMode, ConversionOptions, ConversionResult } from '../typ
 
 type ProblemDetails = { detail?: string; title?: string }
 
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/$/, '')
+
+function apiUrl(path: string): string {
+  return `${API_BASE_URL}${path}`
+}
+
 export async function getConversionOptions(signal?: AbortSignal): Promise<ConversionOptions> {
-  const response = await fetch('/api/conversion-options', { signal })
+  const response = await fetch(apiUrl('/api/conversion-options'), { signal })
   if (!response.ok) throw new Error('Không thể tải cấu hình chuyển đổi từ máy chủ.')
   return (await response.json()) as ConversionOptions
 }
@@ -17,7 +23,11 @@ export async function convertPdfToWord(
   form.append('file', file)
   form.append('mode', mode)
   // fetch tự thêm multipart boundary; đặt Content-Type thủ công sẽ làm hỏng upload.
-  const response = await fetch('/api/convert/pdf-to-word', { method: 'POST', body: form, signal })
+  const response = await fetch(apiUrl('/api/convert/pdf-to-word'), {
+    method: 'POST',
+    body: form,
+    signal,
+  })
   if (!response.ok) {
     const problem = (await response.json().catch(() => ({}))) as ProblemDetails
     throw new Error(problem.detail ?? problem.title ?? 'Không thể chuyển đổi file PDF.')

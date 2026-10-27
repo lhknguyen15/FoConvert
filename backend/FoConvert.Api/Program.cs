@@ -22,6 +22,17 @@ builder.Services.AddSingleton<IPdfToWordConverter>(_ =>
     }));
 builder.Services.AddScoped<ConvertPdfToWordService>();
 
+var allowedCorsOrigins = builder.Configuration
+    .GetSection("Cors:AllowedOrigins")
+    .Get<string[]>() ?? [];
+if (allowedCorsOrigins.Length > 0)
+{
+    builder.Services.AddCors(options => options.AddPolicy("Frontend", policy =>
+        policy.WithOrigins(allowedCorsOrigins)
+            .AllowAnyHeader()
+            .AllowAnyMethod()));
+}
+
 var maxRequestBytes = (maxFileSizeMb + 1L) * 1024 * 1024;
 builder.WebHost.ConfigureKestrel(options => options.Limits.MaxRequestBodySize = maxRequestBytes);
 builder.Services.Configure<FormOptions>(options => options.MultipartBodyLengthLimit = maxRequestBytes);
@@ -44,6 +55,8 @@ _ = app.Services.GetRequiredService<IPdfToWordConverter>();
 
 app.UseExceptionHandler();
 app.UseStatusCodePages();
+if (allowedCorsOrigins.Length > 0)
+    app.UseCors("Frontend");
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
