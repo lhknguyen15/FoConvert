@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import PdfUpload from './components/PdfUpload'
 import SelectedFileCard from './components/SelectedFileCard'
+import ComingSoonPage from './pages/ComingSoonPage'
 import { validatePdfFile } from './utils/pdfFile'
 import { convertPdfToWord, getConversionOptions } from './services/conversionApi'
 import type { ConversionMode, ConversionOptions } from './types/conversion'
@@ -13,6 +14,7 @@ export default function App() {
   const [mode, setMode] = useState<ConversionMode>('editable')
   const [isConverting, setIsConverting] = useState(false)
   const [download, setDownload] = useState<{ url: string; fileName: string } | null>(null)
+  const [isComingSoon, setIsComingSoon] = useState(false)
 
   useEffect(() => {
     const controller = new AbortController()
@@ -83,6 +85,10 @@ export default function App() {
     }
   }
 
+  if (isComingSoon) {
+    return <ComingSoonPage onBack={() => setIsComingSoon(false)} />
+  }
+
   return (
     <div className="min-h-screen bg-[#f7f9fc] text-slate-900">
       <header className="sticky top-0 z-40 border-b border-slate-200 bg-white shadow-sm">
@@ -92,7 +98,7 @@ export default function App() {
           </a>
 
           <div className="flex items-center gap-3">
-            <button type="button" className="rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary-hover">Đăng nhập</button>
+            <button type="button" onClick={() => setIsComingSoon(true)} className="cursor-pointer rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary-hover">Đăng nhập</button>
           </div>
         </nav>
       </header>
@@ -128,7 +134,7 @@ export default function App() {
 
               {selectedFile && <fieldset disabled={isConverting} className="mt-5 space-y-2 disabled:opacity-60"><legend className="mb-2 text-sm font-semibold text-primary">Ưu tiên khi chuyển đổi</legend><label className={`flex cursor-pointer gap-3 rounded-xl border p-3 transition-colors ${mode === 'editable' ? 'border-secondary bg-secondary-soft/60' : 'border-slate-200 hover:bg-secondary-soft/40'}`}><input type="radio" name="mode" value="editable" checked={mode === 'editable'} onChange={() => setMode('editable')} className="mt-1 accent-secondary" /><span><span className="block text-sm font-semibold text-primary">Dễ chỉnh sửa</span><span className="text-xs text-slate-500">Ưu tiên văn bản và luồng nội dung.</span></span></label><label className={`flex cursor-pointer gap-3 rounded-xl border p-3 transition-colors ${mode === 'layout' ? 'border-secondary bg-secondary-soft/60' : 'border-slate-200 hover:bg-secondary-soft/40'}`}><input type="radio" name="mode" value="layout" checked={mode === 'layout'} onChange={() => setMode('layout')} className="mt-1 accent-secondary" /><span><span className="block text-sm font-semibold text-primary">Giữ bố cục</span><span className="text-xs text-slate-500">Ưu tiên vị trí các thành phần trên trang.</span></span></label></fieldset>}
 
-              {selectedFile && <button type="button" onClick={handleConvert} disabled={isConverting || !options} className="mt-5 flex w-full items-center justify-center rounded-xl bg-primary-hover px-5 py-3.5 font-semibold text-white shadow-lg shadow-primary/20 transition-colors hover:bg-primary disabled:cursor-not-allowed disabled:bg-slate-400 disabled:shadow-none">{isConverting ? 'Đang chuyển đổi…' : 'Chuyển đổi sang Word'}</button>}
+              {selectedFile && <button type="button" onClick={handleConvert} disabled={isConverting || !options} className="mt-5 flex w-full cursor-pointer items-center justify-center rounded-xl bg-primary-hover px-5 py-3.5 font-semibold text-white shadow-lg shadow-primary/20 transition-colors hover:bg-primary disabled:cursor-not-allowed disabled:bg-slate-400 disabled:shadow-none">{isConverting ? 'Đang chuyển đổi…' : 'Chuyển đổi sang Word'}</button>}
               {download && <div role="status" className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4"><p className="text-sm font-semibold text-emerald-900">Chuyển đổi thành công</p><a href={download.url} download={download.fileName} className="mt-2 inline-block text-sm font-semibold text-emerald-800 underline underline-offset-2">Tải {download.fileName}</a></div>}
             </section>
           </div>
@@ -136,7 +142,7 @@ export default function App() {
 
       </main>
 
-      <footer className="bg-primary text-secondary-soft"><div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:px-8"><div><div className="flex items-center gap-3"><span className="font-bold text-white">FoConvert</span></div><p className="mt-4 max-w-xs text-sm font-bold leading-relaxed text-secondary-soft/75">Công cụ chuyển đổi tài liệu đơn giản, rõ ràng và hữu ích cho công việc hằng ngày.</p></div><div><h3 className="text-sm font-semibold text-white">Sản phẩm</h3><div className="mt-4 space-y-3 text-sm text-secondary-soft/75"><a href="#converter" className="block hover:text-white">PDF sang Word</a><a href="#notes" className="block hover:text-white">Lưu ý</a></div></div><div><h3 className="text-sm font-semibold text-white">Hỗ trợ</h3><div className="mt-4 space-y-3 text-sm text-secondary-soft/75"><a href="#notes" className="block hover:text-white">Hướng dẫn</a><a href="mailto:support@foconvert.app" className="block hover:text-white">Liên hệ</a></div></div><div><h3 className="text-sm font-semibold text-white">Tài khoản</h3><div className="mt-4 space-y-3 text-sm text-secondary-soft/75"><button type="button" className="block hover:text-white">Đăng nhập</button><button type="button" className="block hover:text-white">Đăng ký</button></div></div></div><div className="border-t border-secondary-soft/20"><div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-5 text-xs text-secondary-soft/60 sm:flex-row sm:items-center sm:justify-between lg:px-8"><span>© 2026 FoConvert. All rights reserved.</span><span>Được xây dựng với React và .NET.</span></div></div></footer>
+      <footer className="bg-primary text-secondary-soft"><div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:px-8"><div><div className="flex items-center gap-3"><span className="font-bold text-white">FoConvert</span></div><p className="mt-4 max-w-xs text-sm font-bold leading-relaxed text-secondary-soft/75">Công cụ chuyển đổi tài liệu đơn giản, rõ ràng và hữu ích cho công việc hằng ngày.</p></div><div><h3 className="text-sm font-semibold text-white">Sản phẩm</h3><div className="mt-4 space-y-3 text-sm text-secondary-soft/75"><a href="#converter" className="block hover:text-white">PDF sang Word</a><a href="#notes" className="block hover:text-white">Lưu ý</a></div></div><div><h3 className="text-sm font-semibold text-white">Hỗ trợ</h3><div className="mt-4 space-y-3 text-sm text-secondary-soft/75"><a href="#notes" className="block hover:text-white">Hướng dẫn</a><a href="mailto:support@foconvert.app" className="block hover:text-white">Liên hệ</a></div></div><div><h3 className="text-sm font-semibold text-white">Tài khoản</h3><div className="mt-4 space-y-3 text-sm text-secondary-soft/75"><button type="button" onClick={() => setIsComingSoon(true)} className="block cursor-pointer hover:text-white">Đăng nhập</button><button type="button" onClick={() => setIsComingSoon(true)} className="block cursor-pointer hover:text-white">Đăng ký</button></div></div></div><div className="border-t border-secondary-soft/20"><div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-5 text-xs text-secondary-soft/60 sm:flex-row sm:items-center sm:justify-between lg:px-8"><span>© 2026 FoConvert. All rights reserved.</span><span>Được xây dựng với React và .NET.</span></div></div></footer>
     </div>
   )
 }

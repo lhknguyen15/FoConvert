@@ -28,7 +28,7 @@ export default function SelectedFileCard({
         type="button"
         onClick={onRemove}
         aria-label="Bỏ file đã chọn"
-        className="flex size-10 shrink-0 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-secondary-border hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+        className="flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-secondary-border hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
       >
         <svg
           viewBox="0 0 24 24"
